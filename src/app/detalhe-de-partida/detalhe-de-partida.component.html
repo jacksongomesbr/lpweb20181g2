@@ -1,0 +1,42 @@
+<h2>Detalhes da partida</h2>
+<div *ngIf="partida">
+  <div>Data: {{partida.data}}</div>
+  <div>Horário: {{partida.horario}}</div>
+  <div>Mandante: {{partida.mandante.nome}}</div>
+  <div>Visitante: {{partida.visitante.nome}}</div>
+  <h3>Estatísticas da partida</h3>
+  <hr>
+  <table>
+    <tr>
+      <td>{{partida.mandante.nome}}</td>
+      <td>{{partida.visitante.nome}}</td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>Total de passes: {{partida.mandante.estatisticas.total_de_passes}}</li>
+          <li>Total de passes certos: {{partida.mandante.estatisticas.total_de_passes_certos}}</li>
+          <li>Total de passes errados: {{partida.mandante.estatisticas.total_de_passes_errados}}</li>
+          <li>Porcentagem de precisão: {{partida.mandante.estatisticas.porcentagem_de_precisao}}%</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Total de passes: {{partida.visitante.estatisticas.total_de_passes}}</li>
+          <li>Total de passes certos: {{partida.visitante.estatisticas.total_de_passes_certos}}</li>
+          <li>Total de passes errados: {{partida.visitante.estatisticas.total_de_passes_errados}}</li>
+          <li>Porcentagem de precisão: {{partida.visitante.estatisticas.porcentagem_de_precisao}}%</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <h3>Lances da partida</h3>
+  <hr>
+  <ul>
+    <li *ngFor="let lance of partida.lances">
+      {{lance.tempo}}T {{lance.instante}} ({{lance.tipo}}) {{encontrarJogador(lance.jogador).nome}}</li>
+  </ul>
+</div>
+<div *ngIf="!partida">
+  Desculpe. Partida não entrada.
+</div>

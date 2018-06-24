@@ -1,0 +1,36 @@
+<div *ngIf="partida">
+  <h2>Partida: {{partida.mandante.nome}} vs. {{partida.visitante.nome}}</h2>
+  <hr>
+  <form #cadastro="ngForm" (submit)="salvar()">
+    <div>
+      <label>Tipo</label>
+      <select name="tipo" id="tipo" [(ngModel)]="tipo">
+        <option>Selecione um tipo</option>
+        <option *ngFor="let tipo of tipos_de_lances">{{tipo}}</option>
+      </select>
+    </div>
+    <div>
+      <span>Tempo</span>
+      <label>
+        <input type="radio" name="tempo" id="tempo_1" value="1" [(ngModel)]="tempo"> 1o.
+      </label>
+      <label>
+        <input type="radio" name="tempo" id="tempo_2" value="2" [(ngModel)]="tempo"> 2o.
+      </label>
+    </div>
+    <div>
+      <label>Instante de tempo</label>
+      <input type="number" name="instante_minutos" id="instante_minutos" placeholder="Min." [(ngModel)]="instante_minutos">
+      <input type="number" name="instante_segundos" id="instante_segundos" placeholder="Seg." [(ngModel)]="instante_segundos">
+    </div>
+    <div>
+      <label>Jogador</label>
+      <select name="jogador" id="jogador" [(ngModel)]="jogador">
+        <option>Selecione o Jogador</option>
+        <option *ngFor="let jogador of partida.mandante.jogadores" [value]="jogador.id">{{partida.mandante.nome}} - {{jogador.nome}}</option>
+        <option *ngFor="let jogador of partida.visitante.jogadores" [value]="jogador.id">{{partida.visitante.nome}} - {{jogador.nome}}</option>
+      </select>
+    </div>
+    <button>Salvar</button>
+  </form>
+</div>

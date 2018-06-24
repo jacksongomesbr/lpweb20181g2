@@ -1,0 +1,28 @@
+<h2>Cadastrar partida</h2>
+<form #cadastro="ngForm" (submit)="salvar()">
+  <div>
+    <label>Data</label>
+    <input type="date" name="data" id="data" [(ngModel)]="data" required>
+  </div>
+  <div>
+    <label>Horário</label>
+    <input type="time" name="horario" id="horario" [(ngModel)]="horario" required>
+  </div>
+  <div>
+    <label>Time mandante</label>
+    <select name="mandante" id="mandante" [(ngModel)]="mandante" required>
+        <option selected="selected">Selecione uma opção</option>
+        <option *ngFor="let time of times" [value]="time.id">{{time.nome}}</option>
+    </select>
+  </div>
+  <div>
+    <label>Time visitante</label>
+    <select name="visitante" id="visitante" [(ngModel)]="visitante" required>
+      <option value="" selected="selected">Selecione uma opção</option>
+      <option *ngFor="let time of times" [value]="time.id">{{time.nome}}</option>
+    </select>
+  </div>
+  <div>
+    <button>Salvar</button>
+  </div>
+</form>
